@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
         export GOPATH=$HOME/work
         curl -sS -O https://storage.googleapis.com/golang/go1.15.linux-amd64.tar.gz
         tar -xvf go1.15.linux-amd64.tar.gz
-        cp go /usr/local
+        cp -r go /usr/local
         echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/.profile
         export PATH=$PATH:/usr/local/go/bin
         git clone git://github.com/hashicorp/levant.git /levant

@@ -44,8 +44,8 @@ function do_setup_vagrantfile {
 
     cat > "${VAGRANT_FILE}" <<EOF
 Vagrant.configure("2") do |config|
-	config.vm.define "seashell-dev"
-	config.vm.hostname = "seashell-dev"
+	config.vm.define "$VAGRANT_ID"
+	config.vm.hostname = "$VAGRANT_ID"
 	config.vm.box = "generic/debian10"
 	config.vm.synced_folder "${PWD}", "/workspace"
 

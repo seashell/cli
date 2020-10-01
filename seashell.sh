@@ -90,6 +90,7 @@ function env_command {
     #ENV DEFAULTS
     PROJECT_ID="smart-gateway"
     VAGRANT_DIR="${HOME}/.seashell/${PROJECT_ID}"
+    VAGRANT_ID="${PROJECT_ID}-dev"
     VAGRANT_FILE="${VAGRANT_DIR}/Vagrantfile"
     # TODO: fetch nomad addr from project
     NOMAD_ADDR="${NOMAD_ADDR:-http://35.207.108.145:4646}"
@@ -121,7 +122,7 @@ function env_command {
 
 
 # GENERAL DEFAULTS
-VAGRANT_ID="seashell-dev"
+
 
 case $1 in
     env | environment ) 

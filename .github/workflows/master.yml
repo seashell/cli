@@ -21,5 +21,5 @@ jobs:
             uses: cedrickring/golang-action@1.6.0
             with:
                args: make release
-               env: 
-                  GO111MODULE: "on"
+            env: 
+               GO111MODULE: "on"

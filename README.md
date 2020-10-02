@@ -14,10 +14,10 @@ Teams often have struggle to manually setup and configure local development envi
    - GNU Make 4.3+
    - Golang 1.15.2+
 
-- To build and install the CLI, simply clone the repository and run the installation command:
+- To build and install the CLI, simply clone the repository and run the build a installation commands:
 ```
-~$ git clone https://github.com/seashell/cli.git seashell-cli && \
-cd seashell-cli && make install
+~$ git clone https://github.com/seashell/cli.git ./seashell-cli && \
+ cd seashell-cli && make && make install
 ```
 - To verify an installation, run:
 ```

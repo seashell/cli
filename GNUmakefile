@@ -31,7 +31,7 @@ install: $(SOURCE_FILES) ## Build and install the seashell CLI executable on the
 
 .PHONY: clean
 clean: ## Remove build artifacts
-	@echo "==> Cleaning build artifacts from $(PROJECT_ROOT)/bin/ ..."
+	@echo "==> Cleaning build artifacts from $(PROJECT_ROOT)/bin/..."
 	@go mod tidy
 	@rm -rf "$(PROJECT_ROOT)/bin/"
 

@@ -1,28 +1,31 @@
 SHELL = sh
 PROJECT_ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
-GO_LDFLAGS ?= "-s -w"
-
+GO_LDFLAGS ?= -s -w
+CGO_ENABLED ?= 1
+GO_TAGS := osusergo
 INSTALLATION_PATH ?= /usr/local/bin
 
-default: help
+
+default: clean bin/seashell 
 					
 bin/seashell: $(SOURCE_FILES) ## Build seashell CLI executable
 	@echo "==> Building the seashell CLI executable..."
-	@GOOS=linux GOARCH=amd64 \
+	CGO_ENABLED=$(CGO_ENABLED) GOOS=linux GOARCH=amd64 \
 			go build \
 			-trimpath \
+			-tags "$(GO_TAGS)" \
 	 		-ldflags "$(GO_LDFLAGS)" \
 			-o "$@"
 
 release: GO_LDFLAGS := "-linkmode external -extldflags '-static' -s -w"
 release: $(SOURCE_FILES) ## Build release version of the seashell CLI executable
 	@echo "==> Building the release version of the seashell CLI executable..."
-	@$(MAKE) clean bin/seashell GO_LDFLAGS=$(GO_LDFLAGS)
+	@$(MAKE) GO_LDFLAGS=$(GO_LDFLAGS)
 
 
 .PHONY: install
-install: clean bin/seashell $(SOURCE_FILES) ## Build and install the seashell CLI executable on the system
+install: $(SOURCE_FILES) ## Build and install the seashell CLI executable on the system
 	@echo "==> Installing CLI executable at $(INSTALLATION_PATH)/seashell..."
 	@sudo cp $(PROJECT_ROOT)/bin/seashell $(INSTALLATION_PATH)/seashell				
 

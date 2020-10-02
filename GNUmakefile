@@ -1,26 +1,28 @@
 SHELL = sh
 PROJECT_ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
-GIT_COMMIT := $(shell git rev-parse HEAD)
-GIT_DIRTY := $(if $(shell git status --porcelain),+CHANGES)
-
-GO_LDFLAGS = "-s -w -X=github.com/seashell/cli/version.GitCommit=$(GIT_COMMIT)$(GIT_DIRTY)"
+GO_LDFLAGS ?= "-s -w"
 
 INSTALLATION_PATH ?= /usr/local/bin
 
 default: help
 					
-bin/seashell: $(SOURCE_FILES) ## Build seashell CLI binary
+bin/seashell: $(SOURCE_FILES) ## Build seashell CLI executable
 	@echo "==> Building the seashell CLI executable..."
 	@GOOS=linux GOARCH=amd64 \
 			go build \
 			-trimpath \
-	 		-ldflags $(GO_LDFLAGS) \
+	 		-ldflags "$(GO_LDFLAGS)" \
 			-o "$@"
+
+release: GO_LDFLAGS := "-linkmode external -extldflags '-static' -s -w"
+release: $(SOURCE_FILES) ## Build release version of the seashell CLI executable
+	@echo "==> Building the release version of the seashell CLI executable..."
+	@$(MAKE) clean bin/seashell GO_LDFLAGS=$(GO_LDFLAGS)
 
 
 .PHONY: install
-install: clean bin/seashell $(SOURCE_FILES) ## Build and install the seashell CLI binary on the system
+install: clean bin/seashell $(SOURCE_FILES) ## Build and install the seashell CLI executable on the system
 	@echo "==> Installing CLI executable at $(INSTALLATION_PATH)/seashell..."
 	@sudo cp $(PROJECT_ROOT)/bin/seashell $(INSTALLATION_PATH)/seashell				
 

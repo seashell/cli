@@ -41,8 +41,8 @@ cd seashell-cli && make install
 - [x] Implement basic CLI structure in golang
 - [x] Implement dev command structure and subcommands (init, update, list and destroy)
 - [x] Implement dev command vagrant interfaces
-- [] Implement authentication with the Seashell Cloud platform
-- [] Implement interactions with the Seashell Cloud platform (fetch information, perform actions) 
-- [] Submit an official release to github
-- [] Make the seashell CLI compatible with Windows
+- [ ] Implement authentication with the Seashell Cloud platform
+- [ ] Implement interactions with the Seashell Cloud platform (fetch information, perform actions) 
+- [ ] Configure CI/CD with github actions and submit an official release to github
+- [ ] Make the seashell CLI compatible with Windows
 

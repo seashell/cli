@@ -1,0 +1,3 @@
+vagrant-cloud/.vagrant
+*.box
+bin/

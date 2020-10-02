@@ -1,0 +1,26 @@
+Vagrant.configure("2") do |config|
+	config.vm.box = "generic/debian10"
+	config.vm.provision "shell", inline: <<-SHELL
+		sudo su -
+		export GOPATH=$HOME/work
+		curl -sS -O https://storage.googleapis.com/golang/go1.15.linux-amd64.tar.gz
+		tar -xvf go1.15.linux-amd64.tar.gz
+		cp -r go /usr/local
+		echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/.profile
+		export PATH=$PATH:/usr/local/go/bin
+		git clone git://github.com/hashicorp/levant.git /levant
+		cd /levant 
+		git checkout --detach f58df42192b5cd98fb83ffec01d9229006a3b29e
+		make build
+		cp bin/levant /bin/levant
+		rm -rf /levant
+  	SHELL
+  	config.vm.provision "shell", inline: <<-SHELL
+		sudo su -
+		apt-get update && curl -fsSL get.docker.com | sh >/dev/null
+		wget -q https://github.com/docker/buildx/releases/download/v0.4.2/buildx-v0.4.2.linux-amd64  --output-document=docker-buildx 
+		mkdir -p /root/.docker/cli-plugins
+		mv docker-buildx /root/.docker/cli-plugins
+		chmod a+x /root/.docker/cli-plugins/docker-buildx
+  	SHELL
+end

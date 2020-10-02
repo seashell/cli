@@ -12,11 +12,6 @@ jobs:
             name: Checkout
             uses: actions/checkout@v2
          -
-            name: Prepare version
-            id: prep
-            run: |
-              echo ::set-output name=version::${GITHUB_REF}
-         -
             name: Run production build
             uses: cedrickring/golang-action@1.6.0
             with:

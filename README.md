@@ -28,7 +28,7 @@ cd seashell-cli && make install
 * Isolated and shareable development environments based on Vagrant + Virtualbox
 * Fully customizable and extensible virtual machines as base environments
 * Compatible with Linux, Windows & Mac OS
-* Infrastructure configuration synchronization between the local/remote environemnts and the cloud
+* Infrastructure configuration synchronization between the local/remote environments and the cloud
 
 ## Development requirements
 * Easy installation

@@ -1,8 +1,8 @@
 # Seashell CLI
 
-Teams often have struggle to manually setup and configure local development environments and integrate them to their cloud infrastructure. The Seashell CLI provides them with a tool that assists developers by:
-  * Setting up software development tools in isolated local environments
-  * Configuring and integrating local/remote development environments with their cloud infrastructure deployed via Seashell
+Teams often have struggle to manually setup and configure local development environments and integrate them to their cloud infrastructure. The Seashell CLI provides them with a tool to:
+  * Setup software development tools in isolated local environments
+  * Configure, integrate and sync local/remote development environments with their cloud infrastructure deployed via Seashell
 
 
 ## Getting started

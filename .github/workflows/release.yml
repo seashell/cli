@@ -3,9 +3,7 @@ on:
      tags:
       - 'v*.*.*'
  
- name: Upload Release Asset
- 
- jobs:
+jobs:
    build:
       name: Upload Release Asset
       runs-on: ubuntu-latest
